@@ -38,29 +38,29 @@ unsigned long long int fibRec_wrapper(int num) {
 // Iterative function
 unsigned long long int fibIter_wrapper(int num) {
 
-   if (mem[num] != -1) {
+if (mem[num] != -1) {
 
-      return mem[num];
-   }
+   return mem[num];
+}
 
-   if (num == 0) {
+if (num == 0) {
 
-      return 0;
-   } else if (num == 1) {
+   return 0;
+} else if (num == 1) {
 
-      return 1;
-   }
+   return 1;
+}
 
-   unsigned long long int a = 0;
-   unsigned long long int b = 1;
-   unsigned long long int c;
+unsigned long long int a = 0;
+unsigned long long int b = 1;
+unsigned long long int c;
 
-   for (int i = 2; i <= num; i++) {
+for (int i = 2; i <= num; i++) {
 
-      c = a + b;
-      a = b;
-      b = c;
-   }
+   c = a + b;
+   a = b;
+   b = c;
+}
 
    mem[num] = b;
 
@@ -70,18 +70,18 @@ unsigned long long int fibIter_wrapper(int num) {
 
 
 
-   unsigned long long int fib_r(int num) {
+unsigned long long int fib_r(int num) {
 
-      return fibRec_wrapper(num);
-   }
+   return fibRec_wrapper(num);
+}
 
-   unsigned long long int fib_i(int num) {
-      return fibIter_wrapper(num);
-   }
+unsigned long long int fib_i(int num) {
+   return fibIter_wrapper(num);
+}
 
 
 
-   int main( int argc , char *argv[] ) {
+int main( int argc , char *argv[] ) {
 
    if (argc < 3) {
 
@@ -112,13 +112,12 @@ unsigned long long int fibIter_wrapper(int num) {
          printf("file %s doesn't have and int\n", argv[3]);
 
          return 1;
-   }
+      }
 
 
+      printf("read %d from %s\n", file_num, argv[3]);
 
-   printf("read %d from %s\n", file_num, argv[3]);
-
-   fclose(file);
+      fclose(file);
    }
 
    num += file_num;
@@ -126,13 +125,11 @@ unsigned long long int fibIter_wrapper(int num) {
    mem = (unsigned long long int*)malloc((num + 1) * sizeof(unsigned long long int));
 
    if (mem == NULL) {
+         printf("Memory allocation failed\n");
 
-      printf("Memory allocation failed\n");
-
-      return 1;
-    }
-    
-   for (int i = 0; i <= num; i++) {
+         return 1;
+      }
+      for (int i = 0; i <= num; i++) {
       
       mem[i] = -1;
    }
