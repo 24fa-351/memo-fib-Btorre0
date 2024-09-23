@@ -99,7 +99,6 @@ int main(int argc, char *argv[])
 
       if (file == NULL)
       {
-
          printf("file doesnt exist");
 
          return 1;
@@ -107,7 +106,6 @@ int main(int argc, char *argv[])
 
       if (0 == fscanf(file, "%d", &file_num))
       {
-
          printf("file %s doesn't have and int\n", argv[3]);
 
          return 1;
@@ -130,7 +128,6 @@ int main(int argc, char *argv[])
    }
    for (int ix = 0; ix <= num; ix++)
    {
-
       mem[ix] = -1;
    }
 
