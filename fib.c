@@ -10,81 +10,78 @@
 unsigned long long int *mem;
 
 // Recursive function
-unsigned long long int fibRec_wrapper(int num) {
-   if (mem[num] != -1) {
-
+unsigned long long int fibRec_wrapper(int num)
+{
+   if (mem[num] != -1)
+   {
       return mem[num];
    }
 
-   if (num == 0) {
-
+   if (num == 0)
+   {
       mem[num] = 0;
-
-   } else if (num == 1) {
-
+   }
+   else if (num == 1)
+   {
       mem[num] = 1;
-
-   } else {
-
+   }
+   else
+   {
       mem[num] = fibRec_wrapper(num - 1) + fibRec_wrapper(num - 2);
    }
 
    return mem[num];
 }
 
-
-
-
 // Iterative function
-unsigned long long int fibIter_wrapper(int num) {
+unsigned long long int fibIter_wrapper(int num)
+{
+   if (mem[num] != -1)
+   {
+      return mem[num];
+   }
 
-if (mem[num] != -1) {
+   if (num == 0)
+   {
+      return 0;
+   }
+   else if (num == 1)
+   {
+      return 1;
+   }
 
-   return mem[num];
-}
+   unsigned long long int a = 0;
+   unsigned long long int b = 1;
+   unsigned long long int c;
 
-if (num == 0) {
-
-   return 0;
-} else if (num == 1) {
-
-   return 1;
-}
-
-unsigned long long int a = 0;
-unsigned long long int b = 1;
-unsigned long long int c;
-
-for (int i = 2; i <= num; i++) {
-
-   c = a + b;
-   a = b;
-   b = c;
-}
+   for (int ix = 2; ix <= num; ix++)
+   {
+      c = a + b;
+      a = b;
+      b = c;
+   }
 
    mem[num] = b;
 
    return b;
 }
 
-
-
-
-unsigned long long int fib_r(int num) {
+unsigned long long int fib_r(int num)
+{
 
    return fibRec_wrapper(num);
 }
 
-unsigned long long int fib_i(int num) {
+unsigned long long int fib_i(int num)
+{
    return fibIter_wrapper(num);
 }
 
+int main(int argc, char *argv[])
+{
 
-
-int main( int argc , char *argv[] ) {
-
-   if (argc < 3) {
-
+   if (argc < 3)
+   {
       printf("Usage: %s <integer> <r/i> <filename>\n", argv[0]);
 
       return 1;
@@ -96,24 +93,25 @@ int main( int argc , char *argv[] ) {
 
    sscanf(argv[1], "%d", &num);
 
-   if (argc == 4) {
-
+   if (argc == 4)
+   {
       FILE *file = fopen(argv[3], "r");
 
-      if (file == NULL) {
+      if (file == NULL)
+      {
 
          printf("file doesnt exist");
 
          return 1;
       }
-      
-      if (0 == fscanf(file, "%d", &file_num)) {
+
+      if (0 == fscanf(file, "%d", &file_num))
+      {
 
          printf("file %s doesn't have and int\n", argv[3]);
 
          return 1;
       }
-
 
       printf("read %d from %s\n", file_num, argv[3]);
 
@@ -122,25 +120,29 @@ int main( int argc , char *argv[] ) {
 
    num += file_num;
 
-   mem = (unsigned long long int*)malloc((num + 1) * sizeof(unsigned long long int));
+   mem = (unsigned long long int *)malloc((num + 1) * sizeof(unsigned long long int));
 
-   if (mem == NULL) {
-         printf("Memory allocation failed\n");
+   if (mem == NULL)
+   {
+      printf("Memory allocation failed\n");
 
-         return 1;
-      }
-      for (int i = 0; i <= num; i++) {
-      
-      mem[i] = -1;
+      return 1;
+   }
+   for (int ix = 0; ix <= num; ix++)
+   {
+
+      mem[ix] = -1;
    }
 
+   // this line is used for debugging/understanding fib location
    // printf("we are about to do the fib of %d \n", num);
 
-   if (argv[2][0] == 'r') {
-      
+   if (argv[2][0] == 'r')
+   {
       compute = fib_r(num);
-   } else {
-
+   }
+   else
+   {
       compute = fib_i(num);
    }
 
